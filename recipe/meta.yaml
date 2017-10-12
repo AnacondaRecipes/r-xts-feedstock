@@ -1,4 +1,4 @@
-{% set version = '0.9-7' %}
+{% set version = '0.10-0' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,36 +12,52 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/xts_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/xts/xts_{{ version }}.tar.gz
-  sha256: f11f7cb98f4b92b7f6632a2151257914130880c267736ef5a264b5dc2dfb7098
+  sha256: 049b4d54a265341dfb5b3ba140f401b12f89a4fd91af7fb72b00b80587eff4f0
+
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
 
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  skip: true  # [win32]
 
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
+# Suggests: timeSeries, timeDate, tseries, chron, fts, tis, RUnit
 requirements:
   build:
     - r-base
-    - r-zoo >=1.7_10
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - r-zoo >=1.7_12
 
   run:
     - r-base
-    - r-zoo >=1.7_10
-    - libgcc  # [not win]
+    - {{native}}gcc-libs         # [win]
+    - r-zoo >=1.7_12
 
 test:
   commands:
-    - $R -e "library('xts')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('xts')"           # [not win]
     - "\"%R%\" -e \"library('xts')\""  # [win]
 
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
 about:
-  home: http://r-forge.r-project.org/projects/xts/
+  home: https://github.com/joshuaulrich/xts
   license: GPL (>= 2)
   summary: Provide for uniform handling of R's different time-based data classes by extending
     zoo, maximizing native format information preservation and allowing for user level
@@ -52,3 +68,32 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: xts
+# Type: Package
+# Title: eXtensible Time Series
+# Version: 0.10-0
+# Date: 2017-07-03
+# Authors@R: c( person(given=c("Jeffrey","A."), family="Ryan", role=c("aut","cph")), person(given=c("Joshua","M."), family="Ulrich", role=c("cre","aut"), email="josh.m.ulrich@gmail.com"), person(given="Ross", family="Bennett", role="ctb") )
+# Depends: zoo (>= 1.7-12)
+# Imports: methods
+# LinkingTo: zoo
+# Suggests: timeSeries, timeDate, tseries, chron, fts, tis, RUnit
+# LazyLoad: yes
+# Description: Provide for uniform handling of R's different time-based data classes by extending zoo, maximizing native format information preservation and allowing for user level customization and extension, while simplifying cross-class interoperability.
+# License: GPL (>= 2)
+# URL: https://github.com/joshuaulrich/xts
+# BugReports: https://github.com/joshuaulrich/xts/issues
+# NeedsCompilation: yes
+# Packaged: 2017-07-04 20:22:54 UTC; josh
+# Author: Jeffrey A. Ryan [aut, cph], Joshua M. Ulrich [cre, aut], Ross Bennett [ctb]
+# Maintainer: Joshua M. Ulrich <josh.m.ulrich@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2017-07-07 07:00:40 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
