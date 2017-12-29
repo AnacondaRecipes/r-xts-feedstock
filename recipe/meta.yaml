@@ -1,4 +1,4 @@
-{% set version = '0.10-0' %}
+{% set version = '0.10-1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,7 +12,7 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/xts_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/xts/xts_{{ version }}.tar.gz
-  sha256: 049b4d54a265341dfb5b3ba140f401b12f89a4fd91af7fb72b00b80587eff4f0
+  sha256: 4221a7b37dd01971d435d970e59b843436ea46989afa4b71fe0181b4136c2dc9
 
 
   # patches:
@@ -21,7 +21,7 @@ source:
 
 build:
   # If this is a new build for the same version, increment the build number.
-  number: 4
+  number: 0
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -75,8 +75,8 @@ extra:
 # Package: xts
 # Type: Package
 # Title: eXtensible Time Series
-# Version: 0.10-0
-# Date: 2017-07-03
+# Version: 0.10-1
+# Date: 2017-12-19
 # Authors@R: c( person(given=c("Jeffrey","A."), family="Ryan", role=c("aut","cph")), person(given=c("Joshua","M."), family="Ulrich", role=c("cre","aut"), email="josh.m.ulrich@gmail.com"), person(given="Ross", family="Bennett", role="ctb") )
 # Depends: zoo (>= 1.7-12)
 # Imports: methods
@@ -88,11 +88,11 @@ extra:
 # URL: https://github.com/joshuaulrich/xts
 # BugReports: https://github.com/joshuaulrich/xts/issues
 # NeedsCompilation: yes
-# Packaged: 2017-07-04 20:22:54 UTC; josh
+# Packaged: 2017-12-20 15:42:47 UTC; josh
 # Author: Jeffrey A. Ryan [aut, cph], Joshua M. Ulrich [cre, aut], Ross Bennett [ctb]
 # Maintainer: Joshua M. Ulrich <josh.m.ulrich@gmail.com>
 # Repository: CRAN
-# Date/Publication: 2017-07-07 07:00:40 UTC
+# Date/Publication: 2017-12-20 16:35:03 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
