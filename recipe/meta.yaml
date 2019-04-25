@@ -1,4 +1,4 @@
-{% set version = '0.11-0' %}
+{% set version = '0.11-2' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/xts_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/xts/xts_{{ version }}.tar.gz
-  sha256: 69e2cf3740a141adf11bfdc24c69bc6adeda9bb13a8294cff4ed4bbd88f5a0ec
+  sha256: 12772f6a66aab5b84b0665c470f11a3d8d8a992955c027261cfe8e6077ee13b8
 
 build:
   merge_build_host: True  # [win]
@@ -62,6 +62,7 @@ about:
     zoo, maximizing native format information preservation and allowing for user level
     customization and extension, while simplifying cross-class interoperability.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
@@ -74,7 +75,7 @@ extra:
 # Package: xts
 # Type: Package
 # Title: eXtensible Time Series
-# Version: 0.11-0
+# Version: 0.11-2
 # Authors@R: c( person(given=c("Jeffrey","A."), family="Ryan", role=c("aut","cph")), person(given=c("Joshua","M."), family="Ulrich", role=c("cre","aut"), email="josh.m.ulrich@gmail.com"), person(given="Ross", family="Bennett", role="ctb"), person(given="Corwin", family="Joy", role="ctb") )
 # Depends: zoo (>= 1.7-12)
 # Imports: methods
@@ -86,11 +87,11 @@ extra:
 # URL: https://github.com/joshuaulrich/xts
 # BugReports: https://github.com/joshuaulrich/xts/issues
 # NeedsCompilation: yes
-# Packaged: 2018-07-16 11:51:57 UTC; josh
+# Packaged: 2018-11-05 13:26:13 UTC; josh
 # Author: Jeffrey A. Ryan [aut, cph], Joshua M. Ulrich [cre, aut], Ross Bennett [ctb], Corwin Joy [ctb]
 # Maintainer: Joshua M. Ulrich <josh.m.ulrich@gmail.com>
 # Repository: CRAN
-# Date/Publication: 2018-07-16 20:20:03 UTC
+# Date/Publication: 2018-11-05 14:10:03 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
